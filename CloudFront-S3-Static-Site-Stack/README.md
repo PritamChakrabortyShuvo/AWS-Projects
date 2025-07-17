@@ -38,7 +38,7 @@ The goal of this project is to securely host a static website on AWS without mak
   - Enable **Block All Public Access** to keep the bucket private.
 
     <div align="center">
-        <img src="Diagrams/S3-Block-Public-Access.png" width=70%>
+        <img src="Diagrams/S3-Block-Public-Access.png" width=100%>
     </div>
 
   - Upload your static website files (e.g., `index.html`, `error.html`).
@@ -59,14 +59,14 @@ The goal of this project is to securely host a static website on AWS without mak
   - Allow private S3 bucket access to CloudFront.
 
     <div align="center">
-        <img src="Diagrams/Allow-private-S3-bucket-access-to-CloudFront.png" width=70%>
+        <img src="Diagrams/Allow-private-S3-bucket-access-to-CloudFront.png" width=100%>
     </div>
 
   - Set **Viewer Protocol Policy** to **Redirect HTTP to HTTPS**.
   - Set **Default Root Object** to `index.html`.
 
     <div align="center">
-        <img src="Diagrams/Default-Root-Object.png" width=70%>
+        <img src="Diagrams/Default-Root-Object.png" width=100%>
     </div>
 
   - Deploy the Distribution & wait until deployment is complete.
