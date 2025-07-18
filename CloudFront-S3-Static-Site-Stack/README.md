@@ -249,14 +249,6 @@ The goal of this project is to securely host a static website on AWS without mak
 
 ---
 
-### Testing the Alarm\*\*
-
-1. **Trigger a Blocked Request:**
-
-   - Simulate a blocked request (e.g., visiting `/admin` or attempting an SQL injection).
-
-2. **Check Email Alerts:**
-
 ### ✅ **Step 7: Result: Test and Verification**
 
 1. **Website Screenshot with **`/admin`** URL:**
