@@ -172,3 +172,21 @@ The goal of this project is to securely host a static website on AWS without mak
   - **Solution:** Ensure the log group name follows the **`aws-waf-logs-`** naming convention.
 
 ---
+
+### ✅ **Step 5: CloudWatch Alarms for Security Alerts**
+
+- **Actions:**
+- Create a **CloudWatch Alarm** with the following configuration:
+
+  - **Metric:** WAFV2 > WebACL > BlockedRequests (Sum)
+  - **Period:** 1 minute
+  - **Threshold:** >= 1 blocked request
+  - **Statistic:** Sum
+  - **Evaluation Periods:** 1
+  - **Action:** Trigger **SNS Topic**.
+
+- **Troubleshooting:**
+- **Problem:** Alarm shows **“Insufficient Data”**.
+- **Solution:** Simulate attacks (e.g., **`/admin`** or SQL injection) to generate blocked requests and feed data to CloudWatch.
+
+---
