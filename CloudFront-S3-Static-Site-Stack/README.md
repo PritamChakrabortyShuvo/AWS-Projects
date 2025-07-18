@@ -131,16 +131,44 @@ The goal of this project is to securely host a static website on AWS without mak
     </div>
 
   - **Recommended Priority:**
+
     1. AdminProtection
     2. AmazonIPReputation
     3. AnonymousIPList
     4. KnownBadInputs
     5. CommonRuleSet
-  - Associate the WAF Web ACL with your CloudFront Distribution.
+
+  - For each rule in the AWS Managed Rule Groups, change the action from **Count** to **Block**. This ensures that any malicious traffic matching these rules is actively blocked rather than just counted.
+
+    <div align="center">
+    <img src="Diagrams/Rules04.png" width=100%>
+    </div>
 
 - **Troubleshooting:**
 
   - **Problem:** Uncertainty about WAF functionality.
   - **Solution:** Test with malicious paths (e.g., **`/admin`**) or SQL injection payloads and confirm that WAF logs are showing up in CloudWatch.
+
+---
+
+### ✅ **Step 4: CloudWatch Logs Integration (WAF Logging)**
+
+- **Actions:**
+
+  - Create a **CloudWatch Log Group**:
+    - Name it: `aws-waf-logs-smart-static-website` (Note: The naming convention is **critical**).
+  - Go to **WAF & Shield** in the AWS console then navigate to your **Web ACL**.
+  - Under **Logging and Monitoring** enable **Logging**.
+
+    <div align="center">
+    <img src="Diagrams/Enable-Logging.png" width=100%>
+    </div>
+
+  - Set the destination to **CloudWatch Logs**.
+  - Choose the log group you created.
+
+- **Troubleshooting:**
+  - **Problem:** Log group isn’t visible in WAF.
+  - **Solution:** Ensure the log group name follows the **`aws-waf-logs-`** naming convention.
 
 ---
