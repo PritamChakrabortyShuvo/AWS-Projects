@@ -253,7 +253,7 @@ The goal of this project is to securely host a static website on AWS without mak
 
 1. **Website Screenshot with **`/admin`** URL:**
 
-   - When you visit the `/admin` URL (which is intentionally blocked by WAF), the request should be blocked, and you should see an **Access Denied** page. Below is a screenshot showing the website behavior when trying to access the `/admin` path.
+   - When you visit the `/admin` URL (which is intentionally blocked by WAF), the request should be blocked & you should see an **Access Denied** page. Below is a screenshot showing the website behavior when trying to access the `/admin` path.
 
     <div align="center">
     <img src="Diagrams/Result.png" width=100%>
@@ -295,3 +295,53 @@ The goal of this project is to securely host a static website on AWS without mak
    <div align="center">
    <img src="Diagrams/Result03.png" width=100%>
    </div>
+
+## ⚠️ **Common Mistakes & Lessons Learned**
+
+<div align="center">
+
+| **Mistake**                               | **Lesson**                                  |
+| ----------------------------------------- | ------------------------------------------- |
+| Not following **`aws-waf-logs-*`** naming | WAF won’t recognize invalid log group names |
+| Forgetting Default Root Object            | Causes Access Denied on `/` root URL        |
+| Expecting S3 access without OAI           | OAI is mandatory for private S3 access      |
+| Using the wrong S3 endpoint (s3-website)  | Use REST endpoint for CloudFront access     |
+| Not confirming SNS email subscription     | Alarm won’t notify until confirmed          |
+
+</div>
+
+---
+
+## 🔐 **Security Best Practices Followed**
+
+<div align="center">
+
+| **Component**  | **Security Mechanism**              |
+| -------------- | ----------------------------------- |
+| **S3 Bucket**  | Private, no public access, OAI only |
+| **CloudFront** | OAI secured, HTTPS enforced         |
+| **WAF**        | Blocks known threats                |
+| **CloudWatch** | Logs security events                |
+| **SNS**        | Alerts via email                    |
+
+</div>
+
+---
+
+## 🔥 Project Outcome
+
+1. Fully secured static website hosted on AWS Free Tier.
+2. Global delivery via CloudFront with HTTPS enforcement.
+3. Web security protections via AWS WAF.
+4. Logs stored for auditing in CloudWatch Logs.
+5. Real-time alerts via SNS notifications.
+6. No direct public access to S3.
+
+## 🚮 Cleanup Steps (Avoid Charges)
+
+1. Delete CloudFront Distribution (wait until fully disabled).
+2. Delete S3 Bucket.
+3. Delete WAF Web ACL.
+4. Delete CloudWatch Log Group: aws-waf-logs-smart-static-website.
+5. Delete CloudWatch Alarms.
+6. Delete SNS Topic and Subscriptions.
