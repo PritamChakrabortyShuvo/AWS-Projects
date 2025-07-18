@@ -179,6 +179,11 @@ The goal of this project is to securely host a static website on AWS without mak
 - Create a **CloudWatch Alarm** with the following configuration:
 
   - **Metric:** WAFV2 > WebACL > BlockedRequests (Sum)
+
+    <div align="center">
+    <img src="Diagrams/Alarm.png" width=100%>
+    </div>
+
   - **Period:** 1 minute
   - **Threshold:** >= 1 blocked request
   - **Statistic:** Sum
