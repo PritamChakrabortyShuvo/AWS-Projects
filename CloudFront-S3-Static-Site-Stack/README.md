@@ -94,3 +94,53 @@ The goal of this project is to securely host a static website on AWS without mak
        <div align="center">
            <img src="Diagrams/Cache-Invalidation01.png" width=100%>
        </div>
+
+---
+
+### ✅ **Step 3: AWS WAF Setup**
+
+- **Actions:**
+
+  - Create a **Web ACL**.
+  - Set **Resource Type** to **Global resources**.
+
+    <div align="center">
+    <img src="Diagrams/Global-Resource.png" width=100%>
+    </div>
+
+  - Provide a **Name** for your Web ACL.
+  - Under **Associate Resources** select **CloudFront** & then choose your **CloudFront distribution** from the available resources.
+
+    <div align="center">
+    <img src="Diagrams/Add-Resource01.png" width=100%>
+    </div>
+
+- **Add the following AWS Managed Rule Groups:**
+
+  - AWS offers two types of rule groups: **free** & **paid**. For this project, we will select the **free** rule groups based on our requirements.
+  - Add the following **AWS Managed Rule Groups**:
+    1. **AWS-AWSManagedRulesAdminProtectionRuleSet**
+    2. **AWS-AWSManagedRulesAmazonIpReputationList**
+    3. **AWS-AWSManagedRulesAnonymousIpList**
+    4. **AWS-AWSManagedRulesKnownBadInputsRuleSet**
+    5. **AWS-AWSManagedRulesCommonRuleSet**
+  - In the **Priority** field, remember that a **lower number** indicates **higher priority**. So, assign priority numbers accordingly.
+
+    <div align="center">
+    <img src="Diagrams/Rules03.png" width=100%>
+    </div>
+
+  - **Recommended Priority:**
+    1. AdminProtection
+    2. AmazonIPReputation
+    3. AnonymousIPList
+    4. KnownBadInputs
+    5. CommonRuleSet
+  - Associate the WAF Web ACL with your CloudFront Distribution.
+
+- **Troubleshooting:**
+
+  - **Problem:** Uncertainty about WAF functionality.
+  - **Solution:** Test with malicious paths (e.g., **`/admin`**) or SQL injection payloads and confirm that WAF logs are showing up in CloudWatch.
+
+---
