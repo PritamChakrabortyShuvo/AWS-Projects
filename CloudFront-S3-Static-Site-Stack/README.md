@@ -342,6 +342,8 @@ The goal of this project is to securely host a static website on AWS without mak
 
 **6.** No direct public access to S3.
 
+---
+
 ## 🚮 Cleanup Steps to Avoid Charges
 
 **1.** Delete CloudFront Distribution (wait until fully disabled).
