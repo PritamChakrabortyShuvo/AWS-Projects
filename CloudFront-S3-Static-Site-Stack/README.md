@@ -330,18 +330,18 @@ The goal of this project is to securely host a static website on AWS without mak
 
 ## 🔥 Project Outcome
 
-1. Fully secured static website hosted on AWS Free Tier.
-2. Global delivery via CloudFront with HTTPS enforcement.
-3. Web security protections via AWS WAF.
-4. Logs stored for auditing in CloudWatch Logs.
-5. Real-time alerts via SNS notifications.
-6. No direct public access to S3.
+**1.** Fully secured static website hosted on AWS Free Tier.
+**2.** Global delivery via CloudFront with HTTPS enforcement.
+**3.** Web security protections via AWS WAF.
+**4.** Logs stored for auditing in CloudWatch Logs.
+**5.** Real-time alerts via SNS notifications.
+**6.** No direct public access to S3.
 
-## 🚮 Cleanup Steps (Avoid Charges)
+## 🚮 Cleanup Steps to Avoid Charges
 
-1. Delete CloudFront Distribution (wait until fully disabled).
-2. Delete S3 Bucket.
-3. Delete WAF Web ACL.
-4. Delete CloudWatch Log Group: aws-waf-logs-smart-static-website.
-5. Delete CloudWatch Alarms.
-6. Delete SNS Topic and Subscriptions.
+**1.** Delete CloudFront Distribution (wait until fully disabled).
+**2.** Delete S3 Bucket.
+**3.** Delete WAF Web ACL.
+**4.** Delete CloudWatch Log Group: aws-waf-logs-smart-static-website.
+**5.** Delete CloudWatch Alarms.
+**6.** Delete SNS Topic and Subscriptions.
