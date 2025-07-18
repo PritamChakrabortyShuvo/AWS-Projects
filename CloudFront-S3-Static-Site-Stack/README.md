@@ -191,7 +191,7 @@ The goal of this project is to securely host a static website on AWS without mak
   - **Action:** Trigger **SNS Topic**.
 
 - **Troubleshooting:**
-- **Problem:** Alarm shows **“Insufficient Data”**.
-- **Solution:** Simulate attacks (e.g., **`/admin`** or SQL injection) to generate blocked requests and feed data to CloudWatch.
+  - **Problem:** Alarm shows **“Insufficient Data”**.
+  - **Solution:** Simulate attacks (e.g., **`/admin`** or SQL injection) to generate blocked requests and feed data to CloudWatch.
 
 ---
