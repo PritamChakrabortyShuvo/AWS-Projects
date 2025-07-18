@@ -78,8 +78,19 @@ The goal of this project is to securely host a static website on AWS without mak
   ```
 
 - **Troubleshooting:**
+
   - **Problem:** Seeing **“Access Denied”** error when accessing the CloudFront URL.
   - **Solution:**
+
     1. **Confirm OAI permissions:** Ensure that the Origin Access Identity (OAI) is properly configured & associated with your CloudFront distribution. AWS automatically applies the necessary permissions to allow CloudFront access to the S3 bucket.
     2. **Ensure you are not accessing the S3 website endpoint:** Make sure you are using the CloudFront distribution URL not the S3 website URL as the latter does not have the proper permissions set for CloudFront.
     3. **Don't forget to set **`index.html`** as the default root object:** If you miss setting **`index.html`** as the root object in CloudFront you will encounter an Access Denied error because CloudFront won't know which file to load by default.
+    4. **Cache Invalidation after adding the root file:** After you add or update the **`index.html`** (or any other file) in your S3 bucket you may need to invalidate the CloudFront cache to reflect the changes. If the old cached version is still served you may continue seeing errors or outdated content. Invalidate the cache via the CloudFront console to ensure the new files are properly loaded.
+
+       <div align="center">
+           <img src="Diagrams/Cache-Invalidation.png" width=100%>
+       </div>
+
+       <div align="center">
+           <img src="Diagrams/Cache-Invalidation01.png" width=100%>
+       </div>
