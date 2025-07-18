@@ -173,69 +173,43 @@ The goal of this project is to securely host a static website on AWS without mak
 
 ---
 
-### ✅ **Step 5: CloudWatch Alarms for Security Alerts**
+### ✅ **Step 5: SNS Email Notification**
 
-- **Actions:**
-- Create a **CloudWatch Alarm** with the following configuration:
+1.  **Create an SNS Topic:**
 
-  - **Metric:** WAFV2 > WebACL > BlockedRequests (Sum)
+    - Navigate to **SNS** in the AWS Console.
+    - Select **Create Topic**.
+    - Choose **Standard** as the topic type.
 
-    <div align="center">
-    <img src="Diagrams/Alarm.png" width=100%>
-    </div>
+     <div align="center">
+     <img src="Diagrams/SNS.png" width=100%>
+     </div>
 
-  - **Period:** 1 minute
-  - **Threshold:** >= 1 blocked request
-  - **Statistic:** Sum
-  - **Evaluation Periods:** 1
-  - **Action:** Trigger **SNS Topic**.
+    - Give your topic a name, for example, `waf-alerts-topic`.
+    - Click **Create Topic**.
 
-- **Troubleshooting:**
-  - **Problem:** Alarm shows **“Insufficient Data”**.
-  - **Solution:** Simulate attacks (e.g., **`/admin`** or SQL injection) to generate blocked requests and feed data to CloudWatch.
+2.  **Subscribe Your Email to the SNS Topic:**
 
----
+    - After creating the SNS topic select the topic name (`waf-alerts-topic`).
+    - Under **Subscriptions**, click **Create subscription**.
 
-### ✅ **Step 6: SNS Email Notification**
+       <div align="center">
+       <img src="Diagrams/SNS01.png" width=100%>
+       </div>
 
-- **Actions:**
-
-  1. **Create an SNS Topic:**
-
-     - In the AWS Management Console, navigate to **Simple Notification Service (SNS)**.
-     - Click on **Create Topic**.
-     - Choose **Standard** for the topic type.
-
-      <div align="center">
-      <img src="Diagrams/SNS.png" width=100%>
-      </div>
-
-     - Name the topic, for example: **`waf-alerts-topic`**.
-     - Click **Create topic**.
-
-  2. **Subscribe your email to the SNS Topic:**
-
-     - After creating the topic, you will be taken to the topic details page.
-     - Click on **Create subscription**.
-
-      <div align="center">
-      <img src="Diagrams/SNS01.png" width=100%>
-      </div>
-
-     - Choose **Email** for the protocol.
+    - Choose **Protocol** as **Email**.
 
       <div align="center">
       <img src="Diagrams/SNS02.png" width=100%>
       </div>
 
-     - In the **Endpoint** field enter the email address where you want to receive alerts.
+    - Enter your email address and click **Create subscription**.
 
       <div align="center">
       <img src="Diagrams/SNS03.png" width=100%>
       </div>
 
-     - Click **Create subscription**.
-     - You will receive a confirmation email. **Click the confirmation link** to activate the subscription.
+      - You will receive a confirmation email. **Click the confirmation link** to activate the subscription.
 
       <div align="center">
       <img src="Diagrams/SNS04.png" width=100%>
@@ -245,12 +219,87 @@ The goal of this project is to securely host a static website on AWS without mak
       <img src="Diagrams/SNS05.png" width=100%>
       </div>
 
-  3. **Attach the SNS Topic to the CloudWatch Alarm action:**
-     - Navigate to **CloudWatch** and open your **Alarms**.
-     - Select the alarm you created for WAF (the one that triggers based on blocked requests).
-     - Click on **Actions** and choose **Modify**.
-     - In the **New state trigger** section, select **Send a notification**.
-     - In the **Send notification to** dropdown, choose the SNS topic you just created (e.g., `waf-alerts-topic`).
-     - Save the changes.
+---
 
-- **Note:** After completing these steps, your SNS will send an email whenever the CloudWatch Alarm is triggered, giving you real-time alerts on potential security events.
+### ✅ **Step 6: Create CloudWatch Alarm**
+
+1. **Navigate to CloudWatch Alarms:**
+
+   - Go to **CloudWatch** and select **Alarms**.
+   - Click on **Create Alarm**.
+
+2. **Choose Metric for WAF Blocked Requests:**
+
+   - Select the **WAFV2** namespace.
+   - Choose the **BlockedRequests** metric for your **Web ACL**.
+
+3. **Configure the Alarm:**
+
+   - Set the **Period** to **1 minute**.
+   - Set the **Threshold** to `>= 1 blocked request`.
+   - Choose the **Statistic** as **Sum** and **Evaluation Periods** as `1`.
+
+4. **Attach the SNS Topic:**
+
+   - In the **Actions** section, choose **Send a notification**.
+   - In the **Send notification to** dropdown, select the **SNS Topic** you created earlier (`waf-alerts-topic`).
+
+5. **Save the Alarm:**
+   - Click **Create Alarm** to save the alarm.
+
+---
+
+### Testing the Alarm\*\*
+
+1. **Trigger a Blocked Request:**
+
+   - Simulate a blocked request (e.g., visiting `/admin` or attempting an SQL injection).
+
+2. **Check Email Alerts:**
+
+### ✅ **Step 7: Result: Test and Verification**
+
+1. **Website Screenshot with **`/admin`** URL:**
+
+   - When you visit the `/admin` URL (which is intentionally blocked by WAF), the request should be blocked, and you should see an **Access Denied** page. Below is a screenshot showing the website behavior when trying to access the `/admin` path.
+
+    <div align="center">
+    <img src="Diagrams/Result.png" width=100%>
+    </div>
+
+2. **Traffic Statistics:**
+
+   - Below is a screenshot showing the action totals for all traffic processed by AWS WAF during the test period. This includes the number of blocked requests, allowed requests, and the percentage distribution.
+
+      <div align="center">
+      <img src="Diagrams/Result02.png" width=100%>
+      </div>
+
+3. **CloudWatch Logs:**
+
+   - After triggering the blocked request (by visiting `/admin`), the blocked request will be logged in **CloudWatch Logs**. Here’s an example of how the log entry should look like in CloudWatch:
+
+    <div align="center">
+    <img src="Diagrams/Result05.png" width=100%>
+    </div>
+
+4. **CloudWatch Alarm State:**
+
+   - After the request is blocked, **CloudWatch Alarm** will be triggered. The alarm state will change to **ALARM**, and it will send a notification through **SNS**. Below is an example of the alarm state:
+
+     - **Alarm State:** `ALARM`
+     - **Metric:** BlockedRequests
+     - **Threshold:** >= 1 blocked request
+     - **Period:** 1 minute
+
+        <div align="center">
+        <img src="Diagrams/Result06.png" width=100%>
+        </div>
+
+5. **Email Notification:**
+
+   - When the **CloudWatch Alarm** is triggered an email notification will be sent via the **SNS Topic**. The email will contain details of the blocked request and alert you that the WAF has blocked suspicious traffic.
+
+   <div align="center">
+   <img src="Diagrams/Result03.png" width=100%>
+   </div>
