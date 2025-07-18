@@ -195,3 +195,62 @@ The goal of this project is to securely host a static website on AWS without mak
   - **Solution:** Simulate attacks (e.g., **`/admin`** or SQL injection) to generate blocked requests and feed data to CloudWatch.
 
 ---
+
+### ✅ **Step 6: SNS Email Notification**
+
+- **Actions:**
+
+  1. **Create an SNS Topic:**
+
+     - In the AWS Management Console, navigate to **Simple Notification Service (SNS)**.
+     - Click on **Create Topic**.
+     - Choose **Standard** for the topic type.
+
+      <div align="center">
+      <img src="Diagrams/SNS.png" width=100%>
+      </div>
+
+     - Name the topic, for example: **`waf-alerts-topic`**.
+     - Click **Create topic**.
+
+  2. **Subscribe your email to the SNS Topic:**
+
+     - After creating the topic, you will be taken to the topic details page.
+     - Click on **Create subscription**.
+
+      <div align="center">
+      <img src="Diagrams/SNS01.png" width=100%>
+      </div>
+
+     - Choose **Email** for the protocol.
+
+      <div align="center">
+      <img src="Diagrams/SNS02.png" width=100%>
+      </div>
+
+     - In the **Endpoint** field enter the email address where you want to receive alerts.
+
+      <div align="center">
+      <img src="Diagrams/SNS03.png" width=100%>
+      </div>
+
+     - Click **Create subscription**.
+     - You will receive a confirmation email. **Click the confirmation link** to activate the subscription.
+
+      <div align="center">
+      <img src="Diagrams/SNS04.png" width=100%>
+      </div>
+
+      <div align="center">
+      <img src="Diagrams/SNS05.png" width=100%>
+      </div>
+
+  3. **Attach the SNS Topic to the CloudWatch Alarm action:**
+     - Navigate to **CloudWatch** and open your **Alarms**.
+     - Select the alarm you created for WAF (the one that triggers based on blocked requests).
+     - Click on **Actions** and choose **Modify**.
+     - In the **New state trigger** section, select **Send a notification**.
+     - In the **Send notification to** dropdown, choose the SNS topic you just created (e.g., `waf-alerts-topic`).
+     - Save the changes.
+
+- **Note:** After completing these steps, your SNS will send an email whenever the CloudWatch Alarm is triggered, giving you real-time alerts on potential security events.
