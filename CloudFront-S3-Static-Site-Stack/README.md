@@ -28,6 +28,21 @@ The goal of this project is to securely host a static website on AWS without mak
 
 </div>
 
+## 📂 Architecture Diagram
+
+  <div align="center">
+      <img src="Diagrams/WorkFlow.png" width=100%>
+  </div>
+  
+### 📋 Architecture Summary
+This project delivers a secure static website hosting solution on AWS Free Tier using the following architecture:
+- **Amazon S3 (Private)** stores the website content.
+- **CloudFront (HTTPS, OAI)** securely serves the content without exposing the S3 bucket publicly.
+- **AWS WAF** protects the application from common web threats (SQLi, XSS, IP reputation, bots) using AWS Managed Rule Sets.
+- **CloudWatch Logs** captures WAF logs for monitoring.
+- **CloudWatch Alarms** trigger on suspicious activity (blocked requests).
+- **SNS (Email)** notifies the security team of any potential attacks.
+
 ## 📋 Detailed Step-by-Step Setup
 
 ### ✅ Step 1: Create a Private S3 Bucket
