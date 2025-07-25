@@ -8,11 +8,15 @@ The objective of this project is to create an interactive & insightful data visu
 
 ## 🔧 Services Used
 
+<div align="center">
+
 | Service        | Purpose                                                         |
 | -------------- | --------------------------------------------------------------- |
 | Amazon S3      | Cloud storage for dataset (CSV file) and manifest file          |
 | AWS QuickSight | Data visualization and business intelligence (BI) service       |
 | AWS IAM        | Manage access and permissions for QuickSight and S3 integration |
+
+</div>
 
 ## Focus and Technologies
 
