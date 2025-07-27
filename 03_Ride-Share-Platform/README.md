@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# RideVibe: AWS-Powered Ride Sharing Platform Documentation
+# AWS-Powered Ride Sharing Platform
 
 ## 📄 Project Objective
 
