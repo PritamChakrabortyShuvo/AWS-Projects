@@ -6,6 +6,8 @@
 
 The **Ride Sharing App** is a serverless web application designed to enable seamless ride-sharing services. It allows users to register, authenticate, and create ride requests through a secure, scalable, and efficient platform. By leveraging AWS services, the application ensures robust user management, data storage, and API-driven functionality, catering to both riders and drivers.
 
+---
+
 ## 🔧 Technology and Tools
 
 The project utilizes the following AWS services and tools:
@@ -18,6 +20,8 @@ The project utilizes the following AWS services and tools:
 - **AWS IAM**: Manages roles and permissions for secure resource access.
 - **GitHub**: Hosts the source code and enables version control.
 
+---
+
 ## 📌 Project Focus
 
 The project emphasizes the following key areas:
@@ -27,6 +31,8 @@ The project emphasizes the following key areas:
 - Reliable and scalable data storage using Amazon DynamoDB.
 - Automated deployment through AWS Amplify integrated with GitHub.
 - Robust security through IAM roles and API Gateway authorization.
+
+---
 
 ## 📂 Architecture Diagram
 
@@ -47,12 +53,16 @@ The architecture is a **Serverless**, **scalable ride-sharing application** buil
 
 The flow starts with the user interacting via Amplify and Cognito, with requests processed through API Gateway, exec
 
+---
+
 ## 📄 Detailed Step-by-Step Guide
 
 ### ✅ Step 1: Source Code Setup
 
 1. Create a GitHub repository for the **Ride Sharing App**.
 2. Upload the source code files, including front-end code, `config.js`, and Lambda function code, to the repository.
+
+---
 
 ### ✅ Step 2: AWS Amplify Setup
 
@@ -83,6 +93,8 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
       <img src="Diagrams/07-Amplify-Deployed.png" width=90%>
    </div>
 
+---
+
 ### ✅ Step 3: Amazon Cognito Setup
 
 1. Navigate to the Amazon Cognito Console and select **Create User Pool**.
@@ -111,6 +123,8 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
          <img src="Diagrams/10-Cognito-Auth-Success.png" width=90%>
       </div>
 
+---
+
 ### ✅ Step 4: Amazon DynamoDB Setup
 
 1. Navigate to the Amazon DynamoDB Console & click **Create Table**.
@@ -120,6 +134,8 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
    </div>
 3. Keep all other settings as default and click **Create Table**.
 4. Copy the **Resource ARN** of the created table for use in IAM configuration.
+
+---
 
 ### ✅ Step 5: AWS IAM Setup
 
@@ -159,6 +175,8 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
    <div align="center">
       <img src="Diagrams/20-IAM-Permission.png" width=90%>
    </div>
+
+---
 
 ### ✅ Step 6: AWS Lambda Setup
 
@@ -206,6 +224,8 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
 <div align="center">
    <img src="Diagrams/29.png" width=90%>
 </div>
+
+---
 
 ### ✅ Step 7: Amazon API Gateway Setup
 
@@ -274,6 +294,8 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
    </div>
 - Commit and push the updated file to your GitHub repository.
 
+---
+
 ### ✅ Step 8: Final Deployment and Testing
 
 1. Wait for Amplify to complete the redeployment of the application.
@@ -282,6 +304,8 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
    <div align="center">
          <img src="Diagrams/result.png" width=90%>
    </div>
+
+---
 
 ## 🔥 Project Outcome
 
@@ -292,6 +316,8 @@ The **Ride Sharing App** is successfully deployed as a serverless web applicatio
 - **Scalable Backend**: AWS Lambda and API Gateway provide a serverless, scalable infrastructure for processing ride requests.
 - **Hosted Front-End**: The application is hosted via AWS Amplify, with automated deployments triggered by GitHub commits.
 - **Secure Access**: IAM roles and Cognito based authorization ensure secure access to AWS resources and APIs.
+
+---
 
 ## ⚠️ Troubleshooting
 
@@ -310,6 +336,8 @@ The **Ride Sharing App** is successfully deployed as a serverless web applicatio
 - **DynamoDB Entry Not Visible**:
   - Verify that the Lambda function is correctly writing to the specified table.
   - Check the table name and partition key in the Lambda code.
+
+---
 
 ## 🚮 Cleaning Steps
 
