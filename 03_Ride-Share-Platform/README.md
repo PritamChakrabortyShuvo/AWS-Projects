@@ -94,25 +94,52 @@ The project emphasizes the following key areas:
 
 ### ✅ Step 4: Amazon DynamoDB Setup
 
-1. Navigate to the Amazon DynamoDB Console and click **Create Table**.
-2. Enter a table name (e.g., `Rides`) and specify a **Partition Key** (e.g., `rideId`).
+1. Navigate to the Amazon DynamoDB Console & click **Create Table**.
+2. Enter a table name (e.g., **`Rides`**) & specify a **Partition Key** (e.g., **`RideId`**).
+   <div align="center">
+      <img src="Diagrams/11-Dynamo.png" width=90%>
+   </div>
 3. Keep all other settings as default and click **Create Table**.
 4. Copy the **Resource ARN** of the created table for use in IAM configuration.
 
 ### ✅ Step 5: AWS IAM Setup
 
 1. Navigate to the AWS IAM Console and select **Create Role**.
+   <div align="center">
+      <img src="Diagrams/12-Create-Role.png" width=90%>
+   </div>
 2. In **Trusted Entity Type**, select **AWS Service**.
 3. Choose **Lambda** as the use case and click **Next**.
+   <div align="center">
+      <img src="Diagrams/12-IAM-Entity.png" width=90%>
+   </div>
 4. Under **Add Permissions**, select the **AWSLambdaExecutionRole** policy and click **Next**.
-5. Provide a role name (e.g., `RideSharingLambdaRole`) and click **Create Role**.
-6. Select the created role, navigate to **Permission Policies**, and click **Add Permissions** > **Create Inline Policy**.
+   <div align="center">
+      <img src="Diagrams/14-IAM-Policy.png" width=90%>
+   </div>
+5. Provide a role name (e.g., **`RideSharingLambdaRole`**) & click **Create Role**.
+   <div align="center">
+      <img src="Diagrams/15-IAM-Policy.png" width=90%>
+   </div>
+6. Select the created role, navigate to **Permission Policies** & click **Add Permissions** > **Create Inline Policy**.
+   <div align="center">
+      <img src="Diagrams/16-IAM-Permission.png" width=90%>
+   </div>
 7. In the policy editor:
    - Select **DynamoDB** as the service.
    - For **Actions Allowed**, select **PutItem**.
    - In the **Resources** section, choose **Specific** and click **Add ARN**.
-   - Paste the DynamoDB table’s **Resource ARN** in the pop-up and click **Add**.
-8. Click **Next**, provide a policy name (e.g., `DynamoDBPutItemPolicy`), and click **Create Policy**.
+      <div align="center">
+         <img src="Diagrams/18-IAM-Permission.png" width=90%>
+      </div>
+   - Paste the DynamoDB table’s **Resource ARN** in the pop-up (Text) and click **Add ARN**.
+      <div align="center">
+         <img src="Diagrams/19-IAM-Permission.png" width=70%>
+      </div>
+8. Click **Next**, provide a policy name (e.g., `DynamoDBWriteAccess`) & click **Create Policy**.
+   <div align="center">
+      <img src="Diagrams/20-IAM-Permission.png" width=90%>
+   </div>
 
 ### ✅ Step 6: AWS Lambda Setup
 
