@@ -145,52 +145,124 @@ The project emphasizes the following key areas:
 
 1. Navigate to the AWS Lambda Console and click **Create Function**.
 2. Select **Author from Scratch**.
-3. Provide a function name (e.g., `CreateRideFunction`).
+   <div align="center">
+      <img src="Diagrams/21-lambda.png" width=90%>
+   </div>
+3. Provide a function name (e.g., **`CreateRideFunction`**).
 4. Select **Node.js 22.x** as the runtime.
-5. Choose **Use an Existing Role** and select the IAM role created earlier (e.g., `RideSharingLambdaRole`).
+   <div align="center">
+      <img src="Diagrams/22-lambda.png" width=90%>
+   </div>
+5. Choose **Use an Existing Role** and select the IAM role created earlier (e.g., **`Ride-Share`**).
+   <div align="center">
+      <img src="Diagrams/23-lambda.png" width=90%>
+   </div>
 6. Click **Create Function**.
-7. In the Lambda function editor, copy the Lambda function code from your GitHub repository’s README file.
-8. Update the code to reference your DynamoDB table name (e.g., `Rides`).
+7. In the Lambda function editor copy the Lambda function code from your GitHub repository’s README file.
+8. Update the code to reference your DynamoDB table name (e.g., **`Ride-Sharing`**).
+   <div align="center">
+      <img src="Diagrams/24-Lambda.png" width=90%>
+   </div>
 9. Deploy the function by clicking **Deploy**.
+   <div align="center">
+      <img src="Diagrams/25-Lambda.png" width=90%>
+   </div>
 10. Create a test event:
-    - Click **Test**, provide a test event name, and paste the test event JSON from your repository’s README.
+    - Click **Create New Test Event** provide a test event name & paste the test event JSON from your repository’s README.
+      <div align="center">
+         <img src="Diagrams/26-Lambda.png" width=90%>
+      </div>
     - Save the test event and click **Test**.
+      <div align="center">
+         <img src="Diagrams/27-Lambda.png" width=90%>
+      </div>
     - Verify the output shows **Status: Succeeded** and **Status Code: 201**.
-11. Navigate to the DynamoDB Console, select your table (e.g., `Rides`), and click **Explore Table Items** to confirm the new entry.
+      <div align="center">
+         <img src="Diagrams/27-Succeded.png" width=90%>
+      </div>
+11. Navigate to the DynamoDB Console, select your table (e.g., `Ride-Sharing`), and click **Explore Table Items** to confirm the new entry.
+<div align="center">
+   <img src="Diagrams/28.png" width=90%>
+</div>
+<div align="center">
+   <img src="Diagrams/29.png" width=90%>
+</div>
 
 ### ✅ Step 7: Amazon API Gateway Setup
 
 1. Navigate to the Amazon API Gateway Console and select **Create REST API**.
+   <div align="center">
+      <img src="Diagrams/30.png" width=90%>
+   </div>
 2. Provide an API name (e.g., `RideSharingAPI`) and click **Create**.
 3. In the **Authorizers** section, click **Create Authorizer**:
    - Provide an authorizer name (e.g., `CognitoAuthorizer`).
    - Select **Cognito** as the type and choose your created user pool.
    - Set the **Token Source** to `Authorization`.
    - Click **Create Authorizer**.
+      <div align="center">
+         <img src="Diagrams/33.png" width=90%>
+      </div>
 4. Select the created authorizer, scroll to **Test Authorizer**, paste the authentication token copied earlier, and click **Test**. Verify a **200 response**.
+<div align="center">
+   <img src="Diagrams/34.png" width=90%>
+</div>
+
 5. In the **Resources** section, click **Create Resource**:
-   - Provide a resource name (e.g., `rides`) and enable **CORS**.
+   - Provide a resource name (e.g., **`Ride`**) & enable **CORS**.
    - Click **Create Resource**.
+      <div align="center">
+         <img src="Diagrams/36.png" width=90%>
+      </div>
 6. Select the created resource and click **Create Method**:
+   <div align="center">
+         <img src="Diagrams/37.png" width=90%>
+   </div>
+
    - Choose **POST** as the method type.
    - Set **Integration Type** to **Lambda**.
    - Enable **Lambda Proxy Integration**.
    - Select your Lambda function (e.g., `CreateRideFunction`) and click **Create Method**.
+      <div align="center">
+         <img src="Diagrams/38.png" width=90%>
+      </div>
+
 7. In the **Method Request** settings for the POST method, click **Edit**:
-   - In the **Authorization** section, select the created authorizer (e.g., `CognitoAuthorizer`).
+    <div align="center">
+             <img src="Diagrams/39.png" width=90%>
+    </div>
+
+   - In the **Authorization** section, select the created authorizer (e.g., `RideShare`).
+     <div align="center">
+      <img src="Diagrams/40.png" width=90%>
+     </div>
    - Click **Save**.
+
 8. Deploy the API:
-   - Click **Deploy API**, select **New Stage**, and name it (e.g., `dev`).
+   - Click **Deploy API**, select **New Stage** and name it (e.g., **`dev`**).
+      <div align="center">
+         <img src="Diagrams/41.png" width=90%>
+      </div>
    - Copy the **Invoke URL** generated after deployment.
-9. Update your source code’s `config.js` file:
-   - Paste the **Invoke URL** into the `invokeUrl` field.
-   - Commit and push the updated file to your GitHub repository.
+      <div align="center">
+         <img src="Diagrams/42.png" width=90%>
+      </div>
+9. Update your source code’s **`config.js`** file:
+
+- Paste the **Invoke URL** into the **`invokeUrl`** field.
+   <div align="center">
+         <img src="Diagrams/43.png" width=90%>
+   </div>
+- Commit and push the updated file to your GitHub repository.
 
 ### ✅ Step 8: Final Deployment and Testing
 
 1. Wait for Amplify to complete the redeployment of the application.
-2. Access the Amplify domain link and append `/ride.html` to the URL (e.g., `https://<amplify-domain>/ride.html`).
+2. Access the Amplify domain link and append **`/ride.html`** to the URL (e.g., **`https://<amplify-domain>/ride.html`**).
 3. Verify that the Ride Sharing App is fully functional and accessible.
+   <div align="center">
+         <img src="Diagrams/result.png" width=90%>
+   </div>
 
 ## Project Outcome
 
