@@ -28,6 +28,25 @@ The project emphasizes the following key areas:
 - Automated deployment through AWS Amplify integrated with GitHub.
 - Robust security through IAM roles and API Gateway authorization.
 
+## 📂 Architecture Diagram
+
+<div align="center">
+         <img src="Diagrams/Architecture.png" width=90%>
+   </div>
+
+### 📋 Architecture Summary
+
+The architecture is a **Serverless**, **scalable ride-sharing application** built on AWS services. It includes:
+
+- **Amplify:** Manages the frontend and user authentication.
+- **Cognito:** Handles user identity and access management.
+- **API Gateway:** Routes user requests to backend services.
+- **Lambda:** Executes ride-sharing logic as serverless functions.
+- **DynamoDB:** Stores ride and user data.
+- **GitHub:** Hosts and manages the application code.
+
+The flow starts with the user interacting via Amplify and Cognito, with requests processed through API Gateway, exec
+
 ## 📄 Detailed Step-by-Step Guide
 
 ### ✅ Step 1: Source Code Setup
