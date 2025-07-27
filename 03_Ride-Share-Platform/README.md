@@ -114,7 +114,7 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
 ### ✅ Step 4: Amazon DynamoDB Setup
 
 1. Navigate to the Amazon DynamoDB Console & click **Create Table**.
-2. Enter a table name (e.g., **`Rides`**) & specify a **Partition Key** (e.g., **`RideId`**).
+2. Enter a table name (e.g., **`Ride-Sharing-App`**) & specify a **Partition Key** (e.g., **`RideId`**).
    <div align="center">
       <img src="Diagrams/11-Dynamo.png" width=90%>
    </div>
@@ -136,7 +136,7 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
    <div align="center">
       <img src="Diagrams/14-IAM-Policy.png" width=90%>
    </div>
-5. Provide a role name (e.g., **`RideSharingLambdaRole`**) & click **Create Role**.
+5. Provide a role name (e.g., **`Ride-Share`**) & click **Create Role**.
    <div align="center">
       <img src="Diagrams/15-IAM-Policy.png" width=90%>
    </div>
@@ -167,7 +167,7 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
    <div align="center">
       <img src="Diagrams/21-lambda.png" width=90%>
    </div>
-3. Provide a function name (e.g., **`CreateRideFunction`**).
+3. Provide a function name (e.g., **`RideShare`**).
 4. Select **Node.js 22.x** as the runtime.
    <div align="center">
       <img src="Diagrams/22-lambda.png" width=90%>
@@ -213,7 +213,7 @@ The flow starts with the user interacting via Amplify and Cognito, with requests
    <div align="center">
       <img src="Diagrams/30.png" width=90%>
    </div>
-2. Provide an API name (e.g., `RideSharingAPI`) and click **Create**.
+2. Provide an API name (e.g., `RideShare`) & click **Create**.
 3. In the **Authorizers** section, click **Create Authorizer**:
    - Provide an authorizer name (e.g., `CognitoAuthorizer`).
    - Select **Cognito** as the type and choose your created user pool.
