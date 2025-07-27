@@ -67,18 +67,30 @@ The project emphasizes the following key areas:
 ### ✅ Step 3: Amazon Cognito Setup
 
 1. Navigate to the Amazon Cognito Console and select **Create User Pool**.
-2. In **Define Your Application**, choose **Single Page Application** to avoid generating a client secret.
+   <div align="center">
+      <img src="Diagrams/08-Cognito-Create.png" width=90%>
+   </div>
+2. In **Define Your Application**, choose **Single Page Application (SPA)** to avoid generating a client secret & give a Name to your application.
+   <div align="center">
+      <img src="Diagrams/09-Cognito-Define-Application.png" width=90%>
+   </div>
 3. In the **Configure** options:
    - Select **Username** as the sign-in method.
    - For required attributes during sign-up, select **Email**.
+      <div align="center">
+         <img src="Diagrams/10-Cognito-ConfigureOption.png" width=90%>
+      </div>
 4. Click **Create User Pool** to provision the user pool.
 5. From the created user pool, copy the **User Pool ID**.
-6. In your source code, locate the `config.js` file and paste the **User Pool ID** under the `userPoolId` field.
-7. Navigate to **App Clients** in the Cognito Console, copy the **Client ID**, and paste it into `config.js` under the `userPoolClientId` field.
-8. Update the AWS region in `config.js` to match your user pool’s region (e.g., `us-east-1`).
+6. In your source code, locate the **`config.js`** file and paste the **User Pool ID** under the **`userPoolId`** field.
+7. Navigate to **App Clients** in the Cognito Console, copy the **Client ID** & paste it into **`config.js`** under the **`userPoolClientId`** field.
+8. **Update the AWS region** in **`config.js`** to match your **user pool’s region** (e.g., `us-east-1`).
 9. Commit and push the updated `config.js` to your GitHub repository.
 10. Wait for Amplify to redeploy the application. Access the domain link, register a user via email, and enter the verification code sent to your email to complete registration.
 11. Sign in to the application and copy the **authentication token** displayed on the screen.
+      <div align="center">
+         <img src="Diagrams/10-Cognito-Auth-Success.png" width=90%>
+      </div>
 
 ### ✅ Step 4: Amazon DynamoDB Setup
 
