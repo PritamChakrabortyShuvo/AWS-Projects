@@ -264,15 +264,15 @@ The project emphasizes the following key areas:
          <img src="Diagrams/result.png" width=90%>
    </div>
 
-## Project Outcome
+## 🔥 Project Outcome
 
 The **Ride Sharing App** is successfully deployed as a serverless web application with the following capabilities:
 
 - **User Authentication**: Users can securely sign up and sign in using Amazon Cognito, with email-based registration and verification.
-- **Ride Creation**: Users can create ride requests through a REST API, with data persistently stored in DynamoDB.
+- **Ride Creation**: Users can create ride requests through a REST API with data persistently stored in DynamoDB.
 - **Scalable Backend**: AWS Lambda and API Gateway provide a serverless, scalable infrastructure for processing ride requests.
 - **Hosted Front-End**: The application is hosted via AWS Amplify, with automated deployments triggered by GitHub commits.
-- **Secure Access**: IAM roles and Cognito-based authorization ensure secure access to AWS resources and APIs.
+- **Secure Access**: IAM roles and Cognito based authorization ensure secure access to AWS resources and APIs.
 
 ## Troubleshooting
 
@@ -292,7 +292,7 @@ The **Ride Sharing App** is successfully deployed as a serverless web applicatio
   - Verify that the Lambda function is correctly writing to the specified table.
   - Check the table name and partition key in the Lambda code.
 
-## Cleaning Steps
+## 🚮 Cleaning Steps
 
 To decommission resources and avoid ongoing AWS charges:
 
