@@ -18,7 +18,7 @@ The project utilizes the following AWS services and tools:
 - **AWS IAM**: Manages roles and permissions for secure resource access.
 - **GitHub**: Hosts the source code and enables version control.
 
-## Project Focus
+## 📌 Project Focus
 
 The project emphasizes the following key areas:
 
@@ -293,7 +293,7 @@ The **Ride Sharing App** is successfully deployed as a serverless web applicatio
 - **Hosted Front-End**: The application is hosted via AWS Amplify, with automated deployments triggered by GitHub commits.
 - **Secure Access**: IAM roles and Cognito based authorization ensure secure access to AWS resources and APIs.
 
-## Troubleshooting
+## ⚠️ Troubleshooting
 
 - **Amplify Deployment Fails**:
   - Ensure the GitHub repository is correctly connected and the specified branch exists.
