@@ -157,11 +157,6 @@ This step creates a secure **Amazon S3 bucket to store the chatbot’s knowledge
   </div>
 
 11. Review all settings and click **Create Knowledge Base**. Wait several minutes for creation to complete.
-
-  <div align="center">
-            <img src="Diagrams/16.png" width=90%>
-  </div>
-
 12. Once created, scroll to the **Data Source** section, select the **data source** & click **Sync**.
 
   <div align="center">
